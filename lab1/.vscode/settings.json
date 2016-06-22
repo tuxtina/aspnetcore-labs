@@ -4,13 +4,13 @@
     "**/node_modules": true,
     "**/bower_components": true,
     "**/bin": true,
-    "**/obj": true
+    "**/obj": true,
+    "**.lock.json": true
   },
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
     "**/.DS_Store": true,
-    "**/bin": true,
-    "**/obj": true
+    "**.lock.json": true
   }
 }

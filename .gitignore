@@ -1,3 +1,3 @@
 *.lock.json
-lab1/src/Lab1/bin
-lab1/src/Lab1/obj
+bin/
+obj/
