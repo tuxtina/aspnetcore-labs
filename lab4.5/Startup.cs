@@ -40,20 +40,7 @@ namespace Lab2
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Use((context, next) =>
-            {
-                var cultureQuery = context.Request.Query["culture"];
-                if (!string.IsNullOrWhiteSpace(cultureQuery))
-                {
-                    var culture = new CultureInfo(cultureQuery);
-
-                    CultureInfo.CurrentCulture = culture;
-                    CultureInfo.CurrentUICulture = culture;
-                }
-
-                // Call the next delegate/middleware in the pipeline
-                return next();
-            });
+            app.UseRequestCulture();
 
             app.Run(async (context) =>
             {
