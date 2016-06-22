@@ -27,6 +27,7 @@ namespace Lab2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRouting();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,13 +37,15 @@ namespace Lab2
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             var routeBuilder = new RouteBuilder(app);
             routeBuilder.MapGet("", context => context.Response.WriteAsync("Hello from Routing!"));
             routeBuilder.MapGet("sub", context => context.Response.WriteAsync("Hello from sub!"));
             // routeBuilder.MapGet("item/{itemName}", context => context.Response.WriteAsync($"Item: {context.GetRouteValue("itemName")}"));
             routeBuilder.MapGet("item/{id:int}", context => context.Response.WriteAsync($"Item ID: {context.GetRouteValue("id")}"));
+            
             app.UseRouter(routeBuilder.Build());
+            app.UseMvc();
         }
     }
 }
