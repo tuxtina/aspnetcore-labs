@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 
 namespace Lab2
 {
@@ -31,13 +32,17 @@ namespace Lab2
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            // loggerFactory.AddConsole(LogLevel.Trace);
+            loggerFactory.AddConsole((category, level) => category == typeof(Startup).FullName);
+
+            var startupLogger = loggerFactory.CreateLogger<Startup>();
             var routeBuilder = new RouteBuilder(app);
             routeBuilder.MapGet("", context => context.Response.WriteAsync("Hello from Routing!"));
             routeBuilder.MapGet("sub", context => context.Response.WriteAsync("Hello from sub!"));
@@ -46,6 +51,13 @@ namespace Lab2
             
             app.UseRouter(routeBuilder.Build());
             app.UseMvc();
+
+            startupLogger.LogInformation("Application startup complete!");
+            startupLogger.LogCritical("This is a critical message");
+            startupLogger.LogDebug("This is a debug message");
+            startupLogger.LogTrace("This is a trace message");
+            startupLogger.LogWarning("This is a warning message");
+            startupLogger.LogError("This is an error message");        
         }
     }
 }
