@@ -39,6 +39,9 @@ namespace Lab2
             
             var routeBuilder = new RouteBuilder(app);
             routeBuilder.MapGet("", context => context.Response.WriteAsync("Hello from Routing!"));
+            routeBuilder.MapGet("sub", context => context.Response.WriteAsync("Hello from sub!"));
+            // routeBuilder.MapGet("item/{itemName}", context => context.Response.WriteAsync($"Item: {context.GetRouteValue("itemName")}"));
+            routeBuilder.MapGet("item/{id:int}", context => context.Response.WriteAsync($"Item ID: {context.GetRouteValue("id")}"));
             app.UseRouter(routeBuilder.Build());
         }
     }
