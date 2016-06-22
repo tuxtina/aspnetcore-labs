@@ -8,3 +8,5 @@ Notes
 * Route Constraints
   * https://docs.asp.net/en/latest/fundamentals/routing.html#template-routes
   * https://blog.mariusschulz.com/2016/03/31/inline-route-constraints-in-asp-net-core-mvc
+* [.NET Platform Standard](https://github.com/dotnet/corefx/blob/master/Documentation/architecture/net-platform-standard.md)
+* [The Future of project.json in ASP.NET Core](https://wildermuth.com/2016/05/12/The-Future-of-project-json-in-ASP-NET-Core)
